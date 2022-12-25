@@ -2,7 +2,7 @@
 program program_1
     implicit none
 
-    integer, parameter :: matrix_size = 10
+    integer, parameter :: matrix_size = 4096
     double precision, dimension(matrix_size , matrix_size) :: matrix
     real :: start, finish
     integer :: i, j
