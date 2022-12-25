@@ -62,9 +62,7 @@ void print_matrix_to_file(float *matrix, std::string name, int size)
 
 
 
-int main(int argc, char *argv[]) {
-    
-    
+int main() {
     int matrix_size = 256;
     std::string input_file_name = "matrix256.txt";
     std::string output_file_name = "tridiag_matrix256.txt";
@@ -76,14 +74,10 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-
     float *D = new float[matrix_size];
     float *E = new float[matrix_size - 1];
     float *tau = new float[matrix_size];
 
-
-
-    
     auto start = std::chrono::steady_clock::now();
     int info = LAPACKE_ssytrd(LAPACK_ROW_MAJOR, 'U', matrix_size, matrix, matrix_size, D, E, tau);
     auto end = std::chrono::steady_clock::now();
