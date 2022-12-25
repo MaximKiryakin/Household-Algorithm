@@ -13,8 +13,6 @@ program worst_program
     double precision, allocatable :: WORK(:)
     real :: start, finish
 
-    ! matrix = reshape((/ 3, 6, 2, 4, 6, 1, 6, 1, 2, 6, 5, 5, 4, 1, 5, 4 /), shape(matrix))
-
     do i = 1, matrix_size
         do j = 1, matrix_size
             if (i >= j) then
@@ -25,17 +23,17 @@ program worst_program
     end do
 
     call cpu_time(start)
-    ! сначала передаю LWORK какой попало
+
     LWORK = -1
 
     call DSYTRD('U', matrix_size, matrix, matrix_size, D, E, TAU, tmp, LWORK,  INFO)
 
     LWORK = tmp(1)
-    !write(*,*) LWORK
 
     allocate (WORK(LWORK))
 
     call DSYTRD('U', matrix_size, matrix, matrix_size, D, E, TAU, WORK, LWORK,  INFO)
+    
     call cpu_time(finish)
     print '("Time = ",f6.3," seconds.")',finish-start
 
